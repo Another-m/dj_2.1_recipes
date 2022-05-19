@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Рецепты</title>
+</head>
+<body>
+<p style="color: #ff11ff; background: #faffaa; font-size: 22px; font-weight: bolder; text-align: center"> Выберете блюдо, либо введите запрос через параметр </p>
+
+<div style="margin-left:26px; color: #002299; font-size: 18px">
+    <div style="text-align: center">
+        <a  href="/?dish=omlet"> Омлет </a>
+        <br>
+        <a href="/?dish=pasta"> Паста </a>
+        <br>
+        <a href="/?dish=buter"> Бутер </a>
+        <br>
+    </div>
+
+
+
+{% for ingredient, amount in recipe.items %}
+    <p>{{ ingredient }}: {{ amount }}</p>
+{% empty %}
+    <p>Такого рецепта не знаю :(</p>
+{% endfor %}
+
+</div>
+    <br>
+<div style="margin-left:25px; font-size: 18px;  font-weight: bolder">
+    {{ text_servings }}
+    {% if text_servings %}
+    <a style="font-size: 16px;" href="?dish={{ dish }}&servings={{ servings|add:"-1" }}"> << меньше_| </a>
+    {{ servings }}
+    <a style="font-size: 16px;" href="?dish={{ dish }}&servings={{ servings|add:"1" }}"> |_больше >> </a>
+    {% endif %}
+</div>
+
+</body>
+</html>
